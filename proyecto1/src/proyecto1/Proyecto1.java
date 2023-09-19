@@ -4,20 +4,19 @@
  */
 package proyecto1;
 
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author diegormsb
  */
 public class Proyecto1 {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
-        interfazParametros interfazParametros = new interfazParametros();
-        interfazParametros.setVisible(true);
-        
+        SwingUtilities.invokeLater(() -> {
+            Parametros inicio = new Parametros();
+            inicio.setVisible(true);
+
+
+        });
     }
-    
 }

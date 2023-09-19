@@ -14,9 +14,6 @@ import java.awt.event.ActionListener;
  */
 public class interfazInicial extends javax.swing.JPanel {
 
-    // Elimina esta línea para evitar la duplicación
-    // private JLabel reloj; 
-    
     private Timer timer;
     private int segundos;
     private int velocidadReloj;
@@ -38,7 +35,6 @@ public class interfazInicial extends javax.swing.JPanel {
     }
 
     private void miInitComponents() {
-        // Ahora 'reloj' se refiere a la variable declarada en la sección de código generado automáticamente
         reloj.setText("00:00");
 
         timer = new Timer(1000 / velocidadReloj, new ActionListener() {
