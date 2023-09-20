@@ -722,6 +722,16 @@ public class Parametros extends javax.swing.JFrame {
         duracionDiaEnSegundos = Integer.parseInt(jTextField1.getText());
         diasEntreEntregas = Integer.parseInt(jTextField3.getText());
         
+        JOptionPane.showMessageDialog(this, "Valores guardados:\n"
+                + "Duración de un día en segundos: " + duracionDiaEnSegundos
+                + "\nDías entre entregas: " + diasEntreEntregas,
+                "Valores Guardados", JOptionPane.INFORMATION_MESSAGE);
+        
+        Principal pri = new Principal(duracionDiaEnSegundos);
+                
+        pri.setVisible(true);
+
+        
         // Ahora las variables globales tienen los valores ingresados por el usuario
     } catch (NumberFormatException e) {
         // Manejo de errores si el usuario ingresó algo que no es un número
