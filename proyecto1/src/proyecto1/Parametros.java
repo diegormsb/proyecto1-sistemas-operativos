@@ -365,7 +365,7 @@ public class Parametros extends javax.swing.JFrame {
         jLabel2.setText("Parámetros bajo los cuales corerrerá la simulación al empezar");
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
-        jLabel5.setText("Duración en segundos de una hora");
+        jLabel5.setText("Duración en segundos de un día");
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
         jLabel6.setText("Días entre entregas");
@@ -722,6 +722,7 @@ public class Parametros extends javax.swing.JFrame {
         try {
         duracionDiaEnSegundos = Integer.parseInt(jTextField1.getText());
         diasEntreEntregas = Integer.parseInt(jTextField3.getText());
+        System.out.print(jTextField1);
         
         JOptionPane.showMessageDialog(this, "Valores guardados:\n"
                 + "Duración de un día en segundos: " + duracionDiaEnSegundos
