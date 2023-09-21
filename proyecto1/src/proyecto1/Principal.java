@@ -8,24 +8,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
-/**
- *
- * @author Alessandro
- */
 public class Principal extends javax.swing.JFrame {
 
-    private Timer timer;
     private int segundos;
     private int velocidadReloj;
 
     public Principal(int velocidadReloj) {
-        this.velocidadReloj = velocidadReloj;
+        this.velocidadReloj = 2 * velocidadReloj;
         segundos = 0;
         initComponents();
         miInitComponents();
     }
 
-  private String formatoReloj(int segundos) {
+    private String formatoReloj(int segundos) {
         int horas = segundos / 3600;
         int minutos = (segundos % 3600) / 60;
         return String.format("%02d:%02d", horas, minutos);
@@ -33,15 +28,30 @@ public class Principal extends javax.swing.JFrame {
 
     private void miInitComponents() {
         reloj.setText("00:00");
-        
-        timer = new Timer(velocidadReloj/ 86400, new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                segundos = (segundos + 1); // 86400 es el número de segundos en un día
-                reloj.setText(formatoReloj(segundos));
+
+        // Iniciamos un hilo en segundo plano para actualizar el reloj
+        Thread relojThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int segundosPorDia = 86400;
+                while (true) {
+                    try {
+                        Thread.sleep(500); // Pausa de medio segundo
+                        segundos += (segundosPorDia / velocidadReloj);
+                        if (segundos >= segundosPorDia) {
+                            segundos = 0; // Reiniciamos cuando se alcanza un día completo
+                        }
+                        reloj.setText(formatoReloj(segundos));
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         });
-        timer.start();
+
+        relojThread.start();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,7 +91,7 @@ public class Principal extends javax.swing.JFrame {
      * @param args the command line arguments
      */
 
-    public static void main(String args[]) {
+public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -101,7 +111,7 @@ public class Principal extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Principal(10000).setVisible(true);
+                new Principal(10).setVisible(true); // Cambiado a 1000 para un segundo por tick
             }
         });
     }
