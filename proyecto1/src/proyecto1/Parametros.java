@@ -63,13 +63,25 @@ public class Parametros extends javax.swing.JFrame {
     }
     
     private boolean verificarYProceder() {
-    if (jLabel30.getText().equals("16") && jLabel31.getText().equals("12")) {
-        return true; // Los valores son correctos
-    } else {
-        return false; // Los valores no son correctos
+    // Primera verificación: Comprobación de jLabels
+    if (!(jLabel30.getText().equals("16.0") && jLabel31.getText().equals("12.0"))) {
+        System.out.println("Fallo en la verificación de jLabels"); // Log para debug
+        return false; // Los valores de los jLabels no son correctos
     }
-}
 
+    // Segunda verificación: Comprobación de la jTable
+    for (int i = 0; i < jTable1.getRowCount(); i++) {
+        for (int j = 0; j < jTable1.getColumnCount(); j++) {
+            Object value = jTable1.getValueAt(i, j);
+            if (value == null || "0.0".equals(value.toString())) {
+                System.out.println("Fallo en la celda (" + i + "," + j + ") con valor: " + value); // Log para debug
+                return false; // Se encontró un valor null o "0.0" en la tabla
+            }
+        }
+    }
+
+    return true; // Todos los valores son correctos
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -645,7 +657,7 @@ public class Parametros extends javax.swing.JFrame {
         duracionDiaEnSegundos = Integer.parseInt(jTextField1.getText());
         diasEntreEntregas = Integer.parseInt(jTextField3.getText());
 
-        // Solo si verificarYProceder() es verdadero, mostramos la ventana y el mensaje
+        // Solo si verificarYProceder() es verdadero, se muestra ventana y mensaje
         if (verificarYProceder()) {
             JOptionPane.showMessageDialog(this, "Valores guardados:\n"
                     + "Duración de un día en segundos: " + duracionDiaEnSegundos
@@ -654,12 +666,13 @@ public class Parametros extends javax.swing.JFrame {
             
             Principal pri = new Principal(duracionDiaEnSegundos);
             pri.setVisible(true);
+            this.setVisible(false);
         } else {
             JOptionPane.showMessageDialog(this, "Los valores de las columnas no son correctos. Por favor, verifica e intenta de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
     } catch (NumberFormatException e) {
-        // Manejo de errores si el usuario ingresó algo que no es un número
+        // Si se ingresa algo que no es número
         JOptionPane.showMessageDialog(this, "Por favor, ingresa números válidos en los campos correspondientes.", "Error", JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_okParametros1ActionPerformed
