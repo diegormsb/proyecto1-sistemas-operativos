@@ -682,10 +682,6 @@ public class Parametros extends javax.swing.JFrame {
             empresa empresa1 = new empresa("Nintendo", narrativa1, niveles1, sprites1, logica1, dlc1, integradores1);
             empresa empresa2 = new empresa("Capcom", narrativa2, niveles2, sprites2, logica2, dlc2, integradores2);
 
-            System.out.print(empresa1.getNombre());
-            System.out.print(empresa1.getIntegradores());
-            System.out.print(empresa2.getNombre());
-            
             
             Principal pri = new Principal(duracionDiaEnSegundos);
             pri.setVisible(true);

@@ -13,7 +13,7 @@ import javax.swing.SwingUtilities;
 public class Proyecto1 {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            empresaInterfaz inicio = new empresaInterfaz();
+            Parametros inicio = new Parametros();
             inicio.setVisible(true);
 
 
