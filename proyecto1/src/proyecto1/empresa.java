@@ -87,5 +87,4 @@ public class empresa {
         this.integradores = integradores;
     }
 
-    // Otros métodos que puedas necesitar para la clase Empresa
 }

@@ -15,9 +15,15 @@ public class Principal extends javax.swing.JFrame {
     private int segundos;
     private int velocidadReloj;
     private int contadorDias;
+    private static empresa empresa1;
+    private static empresa empresa2;
 
-    public Principal(int velocidadReloj) {
+
+    public Principal(int velocidadReloj,empresa empresa1, empresa empresa2) {
         this.velocidadReloj = 2 * velocidadReloj;
+        this.empresa1=empresa1;
+        this.empresa2=empresa2;
+        
         segundos = 0;
         contadorDias = 0;
         initComponents();
@@ -79,8 +85,8 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        empresa1_details = new javax.swing.JButton();
+        empresa2_details = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -126,17 +132,17 @@ public class Principal extends javax.swing.JFrame {
 
         jButton1.setText("jButton1");
 
-        jButton2.setText("Mostrar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        empresa1_details.setText("Mostrar");
+        empresa1_details.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                empresa1_detailsActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Mostrar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        empresa2_details.setText("Mostrar");
+        empresa2_details.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                empresa2_detailsActionPerformed(evt);
             }
         });
 
@@ -160,9 +166,9 @@ public class Principal extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(empresa1_details)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3)))
+                                .addComponent(empresa2_details)))
                         .addGap(77, 77, 77))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -185,8 +191,8 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(empresa1_details)
+                    .addComponent(empresa2_details))
                 .addGap(15, 15, 15))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -200,13 +206,24 @@ public class Principal extends javax.swing.JFrame {
 
  
     
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void empresa1_detailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empresa1_detailsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        empresaInterfaz ventanaEmpresa1 = new empresaInterfaz(empresa1);
+        ventanaEmpresa1.setVisible(true);  
+        System.out.println("Empresa1 - Narrativa: " + empresa1.getDesarrolladoresNarrativa());
+        System.out.println("Empresa2 - Narrativa: " + empresa2.getDesarrolladoresNarrativa());
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+    }//GEN-LAST:event_empresa1_detailsActionPerformed
+
+    private void empresa2_detailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empresa2_detailsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        empresaInterfaz ventanaEmpresa2 = new empresaInterfaz(empresa2);
+        ventanaEmpresa2.setVisible(true);
+        System.out.println("Empresa1 - Narrativa: " + empresa1.getDesarrolladoresNarrativa());
+        System.out.println("Empresa2 - Narrativa: " + empresa2.getDesarrolladoresNarrativa());
+
+    }//GEN-LAST:event_empresa2_detailsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -232,16 +249,16 @@ public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Principal(10).setVisible(true); // Cambiado a 1000 para un segundo por tick
+                new Principal(10,empresa1,empresa2).setVisible(true); // Cambiado a 1000 para un segundo por tick
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel dia;
+    private javax.swing.JButton empresa1_details;
+    private javax.swing.JButton empresa2_details;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

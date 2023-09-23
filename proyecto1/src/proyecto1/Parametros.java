@@ -20,6 +20,8 @@ public class Parametros extends javax.swing.JFrame {
     
     public int duracionDiaEnSegundos;
     public int diasEntreEntregas;
+    private empresa empresa1;
+    private empresa empresa2;
 
     
     /**
@@ -672,18 +674,17 @@ public class Parametros extends javax.swing.JFrame {
             Integer dlc1 = Integer.valueOf(jTable1.getValueAt(4, 0).toString());
             Integer integradores1 = Integer.valueOf(jTable1.getValueAt(5, 0).toString());
             
-            Integer narrativa2 = Integer.valueOf(jTable1.getValueAt(0, 0).toString());
-            Integer niveles2 = Integer.valueOf( jTable1.getValueAt(1, 0).toString());
-            Integer sprites2 = Integer.valueOf( jTable1.getValueAt(2, 0).toString());
-            Integer logica2 = Integer.valueOf( jTable1.getValueAt(3, 0).toString());
-            Integer dlc2 = Integer.valueOf( jTable1.getValueAt(4, 0).toString());
-            Integer integradores2 = Integer.valueOf( jTable1.getValueAt(5, 0).toString());
+            Integer narrativa2 = Integer.valueOf(jTable1.getValueAt(0, 1).toString());
+            Integer niveles2 = Integer.valueOf( jTable1.getValueAt(1, 1).toString());
+            Integer sprites2 = Integer.valueOf( jTable1.getValueAt(2, 1).toString());
+            Integer logica2 = Integer.valueOf( jTable1.getValueAt(3, 1).toString());
+            Integer dlc2 = Integer.valueOf( jTable1.getValueAt(4, 1).toString());
+            Integer integradores2 = Integer.valueOf( jTable1.getValueAt(5, 1).toString());
             
-            empresa empresa1 = new empresa("Nintendo", narrativa1, niveles1, sprites1, logica1, dlc1, integradores1);
-            empresa empresa2 = new empresa("Capcom", narrativa2, niveles2, sprites2, logica2, dlc2, integradores2);
-
+            empresa1 = new empresa("Nintendo", narrativa1, niveles1, sprites1, logica1, dlc1, integradores1);
+            empresa2 = new empresa("Capcom", narrativa2, niveles2, sprites2, logica2, dlc2, integradores2);
             
-            Principal pri = new Principal(duracionDiaEnSegundos);
+            Principal pri = new Principal(duracionDiaEnSegundos, empresa1,empresa2);
             pri.setVisible(true);
             this.setVisible(false);
         } else {
